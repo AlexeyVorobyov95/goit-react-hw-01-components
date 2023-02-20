@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 export const FriendList = ({ friends }) => {
   return (
-    <List class="friend-list">
+    <List>
       {friends.map(frend => (
         <FriendListItem
+          key={frend.id}
           avatar={frend.avatar}
           name={frend.name}
           isOnline={frend.isOnline}
@@ -16,13 +17,13 @@ export const FriendList = ({ friends }) => {
   );
 };
 
-FriendList.PropTypes = {
+FriendList.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.exact({
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       isOnline: PropTypes.bool.isRequired,
-      // id: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
     }),
   ).isRequired,
 };

@@ -7,59 +7,52 @@ import {
   ListStats,
   Label,
   Quantity,
-} from './Profile.style';
+} from './Profile.styled';
 
-export const Profile = ({
-  dataUser: {
-    username,
-    tag,
-    location,
-    avatar,
-    stats: { followers, views, likes },
-  },
-}) => {
+export const Profile = (props) => {
+  const { username, tag, location, avatar, stats } = props.userData;
+  const { followers, views, likes } = stats;
+
   return (
-    <ProfileContainer class="profile">
-      <div class="description">
-        <Avatar src={avatar} alt="User avatar" class="avatar" width="200" />
-        <Text name="name" class="name">
-          {username}
-        </Text>
-        <Text class="tag">@{tag}</Text>
-        <Text class="location">{location}</Text>
+    <ProfileContainer>
+      <div>
+        <Avatar src={avatar} alt="User avatar" width="200" />
+        <Text name="name">{username}</Text>
+        <Text>@{tag}</Text>
+        <Text>{location}</Text>
       </div>
 
-      <ListStats class="stats">
+      <ListStats>
         <li>
-          <Label class="label">Followers</Label>
-          <Quantity class="quantity">{followers}</Quantity>
+          <Label>Followers</Label>
+          <Quantity>{followers}</Quantity>
         </li>
         <li>
-          <Label class="label">Views</Label>
-          <Quantity class="quantity">{views}</Quantity>
+          <Label>Views</Label>
+          <Quantity>{views}</Quantity>
         </li>
         <li>
-          <Label class="label">Likes</Label>
-          <Quantity class="quantity">{likes}</Quantity>
+          <Label>Likes</Label>
+          <Quantity>{likes}</Quantity>
         </li>
       </ListStats>
     </ProfileContainer>
   );
 };
 
-Profile.PropTypes = {
-  dataUser: PropTypes.arrayOf(
+Profile.propTypes = {
+  userData: PropTypes.exact(
     PropTypes.exact({
-      username: PropTypes.string.isRequired,
-      tag: PropTypes.string.isRequired,
-      location: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
+      username: PropTypes.string,
+      tag: PropTypes.string,
+      location: PropTypes.string,
+      avatar: PropTypes.string,
 
       stats: PropTypes.exact({
-        followers: PropTypes.number.isRequired,
-        views: PropTypes.number.isRequired,
-        likes: PropTypes.number.isRequired,
+        followers: PropTypes.number,
+        views: PropTypes.number,
+        likes: PropTypes.number,
       }),
-    }),
-  ).isRequired,
+    })
+  ),
 };

@@ -5,19 +5,19 @@ import {
   Item,
   Label,
   Percentage,
-} from './Statistics.style';
+} from './Statistics.styled';
 import PropTypes from 'prop-types';
 
 export const Statistics = ({ stats, title }) => {
   return (
-    <Container class="statistics">
-      <Title class="title">{title}</Title>
-      <StatList class="stat-list">
+    <Container>
+      <Title>{title}</Title>
+      <StatList>
         {stats.map(stat => {
           return (
-            <Item id={stat.id} class="item">
-              <Label class="label">{stat.label}</Label>
-              <Percentage class="percentage">{stat.percentage}%</Percentage>
+            <Item key={stat.id}>
+              <Label>{stat.label}</Label>
+              <Percentage>{stat.percentage}%</Percentage>
             </Item>
           );
         })}
@@ -25,12 +25,11 @@ export const Statistics = ({ stats, title }) => {
     </Container>
   );
 };
-
-Statistics.PropTypes = {
-  title: PropTypes.string.isRequired,
+Statistics.propTypes = {
+  title: PropTypes.string.isRequiped,
   stats: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.string.isRequired,
+      ip: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
     })

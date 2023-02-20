@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 
 export const FriendListItem = ({ avatar, name, isOnline }) => {
   return (
-    <Item class="item">
-      <Status class="status">
+    <Item>
+      <Status>
         <StatusIcon status={isOnline}></StatusIcon>
       </Status>
-      <Avatar class="avatar" src={avatar} alt="User avatar" width="48" />
-      <Name class="name">{name}</Name>
+      <Avatar src={avatar} alt="User avatar" width="48" />
+      <Name>{name}</Name>
     </Item>
   );
 };
 
-FriendListItem.PropTypes = {
+FriendListItem.propTypes = {
 friends: PropTypes.arrayOf(
   PropTypes.exact({
     avatar: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    // id: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
   }),
 ).isRequired,
 };

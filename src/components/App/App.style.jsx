@@ -1,6 +1,6 @@
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import second from 'modern-normalize';
+// import second from 'modern-normalize';
 
 export const Container = styled.div`
 width: 100%;

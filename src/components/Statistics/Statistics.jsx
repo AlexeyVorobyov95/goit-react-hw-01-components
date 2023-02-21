@@ -11,13 +11,14 @@ import PropTypes from 'prop-types';
 export const Statistics = ({ stats, title }) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      {title !== undefined && <Title>{title}</Title>}
+
       <StatList>
-        {stats.map(stat => {
+        {stats.map(({ id, label, percentage }) => {
           return (
-            <Item key={stat.id}>
-              <Label>{stat.label}</Label>
-              <Percentage>{stat.percentage}%</Percentage>
+            <Item key={id}>
+              <Label>{label}</Label>
+              <Percentage>{percentage}%</Percentage>
             </Item>
           );
         })}
@@ -26,12 +27,11 @@ export const Statistics = ({ stats, title }) => {
   );
 };
 Statistics.propTypes = {
-  title: PropTypes.string.isRequired,
   stats: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
-    })
+    }).isRequired,
   ).isRequired,
 };

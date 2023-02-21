@@ -9,9 +9,13 @@ import {
   Quantity,
 } from './Profile.styled';
 
-export const Profile = (props) => {
-  const { username, tag, location, avatar, stats } = props.userData;
-  const { followers, views, likes } = stats;
+export const Profile = ({
+  username,
+  tag,
+  location,
+  avatar,
+  stats: { followers, views, likes },
+}) => {
 
   return (
     <ProfileContainer>
@@ -41,15 +45,13 @@ export const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  userData: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    tag: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    stats: PropTypes.shape({
-      followers: PropTypes.number.isRequired,
-      views: PropTypes.number.isRequired,
-      likes: PropTypes.number.isRequired,
-    }).isRequired,
+  username: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
   }).isRequired,
 };
